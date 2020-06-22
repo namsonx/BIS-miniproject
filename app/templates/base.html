@@ -1,0 +1,14 @@
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Miniproject</title>
+      {% else %}
+      <title>Welcome to Miniproject</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>Miniproject: <a href="/index">Home</a></div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
