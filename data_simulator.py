@@ -1,5 +1,6 @@
 import mysql.connector as sql
 import random
+from time import sleep
 
 
 def simulator(data, header_id):
@@ -39,7 +40,8 @@ def main():
         light_range.append(i)
     print(light_range)
     i=1
-    while i<31:
+    while i<11:
+        print("Updating sensors data")
         humidity = random.choice(humidity_range)
         simulator(humidity, 1)
         temp = random.choice(tmp_range)
@@ -59,6 +61,7 @@ def main():
         light = random.choice(light_range)
         simulator(light, 9)
 
+        sleep(30)
         i=i+1    
 
 if __name__=="__main__":

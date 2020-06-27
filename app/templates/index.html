@@ -1,20 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi, {{ user.username }}!</h1>
-    {% for post in posts %}
-    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
-    {% endfor %}
-    <center>
-        <h1>{{ title }}</h1>
+  <head><meta http-equiv="refresh" content="5"></head>
+    <div class="row">
+      <h2>AREA 501</h2>
+      <button onclick="reportFunction()">Abnormal Report</button> 
+      <script>
+        function reportFunction() {
+          location.replace("http://localhost:5000/report")
+        }
+        </script>
+    </div>
+    <div class="row">
+    </div>
+    <div class="row">
+      <div class="column">
+        <h1>Humidity Live Data</h1>
     
-        <canvas id="chart" width="600" height="400"></canvas>
+        <canvas id="hchart" width="500" height="350"></canvas>
         <script>
     
           // bar chart data
           var barData = {
             labels : [
-              {% for item in labels %}
+              {% for item in hlabels %}
                 "{{ item }}",
               {% endfor %}
             ],
@@ -28,11 +37,11 @@
               pointHighlightStroke: "rgba(151,187,205,1)",
               bezierCurve : false,
               data : [
-            {% for item in values %}
+            {% for item in hvalues %}
                   {{ item }},
                 {% endfor %}]
               }
-        ]
+            ]
           }
     
           Chart.defaults.global.animationSteps = 50;
@@ -46,10 +55,10 @@
           Chart.defaults.global.scaleFontSize = 16;
     
           // get bar chart canvas
-          var mychart = document.getElementById("chart").getContext("2d");
+          var mychart = document.getElementById("hchart").getContext("2d");
     
           steps = 10
-          max = {{ max }}
+          max = 30
           // draw bar chart
           var LineChartDemo = new Chart(mychart).Line(barData, {
             scaleOverride: true,
@@ -64,5 +73,127 @@
           });
     
         </script>
-      </center>
+      </div>
+      <div class="column">
+        <h1>Temperature Live Data</h1>
+    
+        <canvas id="tchart" width="500" height="350"></canvas>
+        <script>
+    
+          // bar chart data
+          var barData = {
+            labels : [
+              {% for item in tlabels %}
+                "{{ item }}",
+              {% endfor %}
+            ],
+    
+            datasets : [{
+              fillColor: "rgba(151,187,205,0.2)",
+              strokeColor: "rgba(151,187,205,1)",
+              pointColor: "rgba(151,187,205,1)",
+              pointStrokeColor: "#fff",
+              pointHighlightFill: "#fff",
+              pointHighlightStroke: "rgba(151,187,205,1)",
+              bezierCurve : false,
+              data : [
+            {% for item in tvalues %}
+                  {{ item }},
+                {% endfor %}]
+              }
+            ]
+          }
+    
+          Chart.defaults.global.animationSteps = 50;
+          Chart.defaults.global.tooltipYPadding = 16;
+          Chart.defaults.global.tooltipCornerRadius = 0;
+          Chart.defaults.global.tooltipTitleFontStyle = "normal";
+          Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
+          Chart.defaults.global.animationEasing = "easeOutBounce";
+          Chart.defaults.global.responsive = false;
+          Chart.defaults.global.scaleLineColor = "black";
+          Chart.defaults.global.scaleFontSize = 16;
+    
+          // get bar chart canvas
+          var mychart = document.getElementById("tchart").getContext("2d");
+    
+          steps = 10
+          max = 50
+          // draw bar chart
+          var LineChartDemo = new Chart(mychart).Line(barData, {
+            scaleOverride: true,
+            scaleSteps: steps,
+            scaleStepWidth: Math.ceil(max / steps),
+            scaleStartValue: 0,
+            scaleShowVerticalLines: true,
+            scaleShowGridLines : true,
+            barShowStroke : true,
+            scaleShowLabels: true,
+            bezierCurve: false,
+          });
+    
+        </script>
+      </div>
+      <div class="column">
+        <h1>Light Live Data</h1>
+    
+        <canvas id="lchart" width="500" height="350"></canvas>
+        <script>
+    
+          // bar chart data
+          var barData = {
+            labels : [
+              {% for item in llabels %}
+                "{{ item }}",
+              {% endfor %}
+            ],
+    
+            datasets : [{
+              fillColor: "rgba(151,187,205,0.2)",
+              strokeColor: "rgba(151,187,205,1)",
+              pointColor: "rgba(151,187,205,1)",
+              pointStrokeColor: "#fff",
+              pointHighlightFill: "#fff",
+              pointHighlightStroke: "rgba(151,187,205,1)",
+              bezierCurve : false,
+              data : [
+            {% for item in lvalues %}
+                  {{ item }},
+                {% endfor %}]
+              }
+            ]
+          }
+    
+          Chart.defaults.global.animationSteps = 50;
+          Chart.defaults.global.tooltipYPadding = 16;
+          Chart.defaults.global.tooltipCornerRadius = 0;
+          Chart.defaults.global.tooltipTitleFontStyle = "normal";
+          Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
+          Chart.defaults.global.animationEasing = "easeOutBounce";
+          Chart.defaults.global.responsive = false;
+          Chart.defaults.global.scaleLineColor = "black";
+          Chart.defaults.global.scaleFontSize = 16;
+    
+          // get bar chart canvas
+          var mychart = document.getElementById("lchart").getContext("2d");
+    
+          steps = 10
+          max = 100
+          // draw bar chart
+          var LineChartDemo = new Chart(mychart).Line(barData, {
+            scaleOverride: true,
+            scaleSteps: steps,
+            scaleStepWidth: Math.ceil(max / steps),
+            scaleStartValue: 0,
+            scaleShowVerticalLines: true,
+            scaleShowGridLines : true,
+            barShowStroke : true,
+            scaleShowLabels: true,
+            bezierCurve: false,
+          });
+    
+        </script>
+      </div>
+    </div>
+
 {% endblock %}
