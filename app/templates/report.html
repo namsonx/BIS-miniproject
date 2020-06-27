@@ -1,5 +1,126 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <script>
+        // function myCreateFunction() {
+        // var table = document.getElementById("report-table");
+        // var row = table.insertRow(0);
+        // var cell1 = row.insertCell(0);
+        // var cell2 = row.insertCell(1);
+        // cell1.innerHTML = "NEW CELL1";
+        // cell2.innerHTML = "NEW CELL2";
+        // }
+
+        var outputTbl = document.getElementById('report-table');
+
+        var output = document.createElement("tr");
+        outputTbl.appendChild(output);
+
+        for (index = 0; index < enteredStrings.length; index++) {
+            output.innerHTML += "<td>" + enteredStrings[index] + "</td>";
+            total.innerHTML = "Total: " + nameCounter;
+        }
+
+        for (index = 0; index < enteredStringsTwo.length; index++) {
+        output.innerHTML += "<td>" + enteredStringsTwo[index] + "</td>";
+        nameCounter++;
+        total.innerHTML = "Total: " + nameCounter;
+        }
+        
+    </script>
     <h1>Report page</h1>
+    <div class="row">
+       <div class="column">
+        <table id="report-table">
+            <tr>
+              <th>Area Name</th>
+              <th>Current Product</th>
+              <th>Sensor Type</th>
+              <th>Min Value</th>
+              <th>Max Value</th>
+              <th>TimeStamp</th>
+              <th>Abnormal Value</th>
+              <th>Device Type</th>
+              <th>Action Suggesttion</th>
+            </tr>
+            <tr>
+              <td>Area 601</td>
+              <td>Watermelon</td>
+              <td>Humidity</td>
+              <td>17</td>
+              <td>20</td>
+              <td>2020-06-26 21:10:26</td>
+              <td>26</td>
+              <td>Water machine</td>
+              <td>Turn off</td>
+            </tr>
+            <tr>
+                <td>Area 601</td>
+                <td>Watermelon</td>
+                <td>Temperature</td>
+                <td>22</td>
+                <td>38</td>
+                <td>2020-06-26 21:10:26</td>
+                <td>21</td>
+                <td>NA</td>
+                <td>NA</td>
+            </tr>
+            <tr>
+                <td>Area 601</td>
+                <td>Watermelon</td>
+                <td>Humidity</td>
+                <td>17</td>
+                <td>20</td>
+                <td>2020-06-26 21:10:57</td>
+                <td>26</td>
+                <td>Water machine</td>
+                <td>Turn off</td>
+            </tr>
+            <tr>
+                <td>Area 601</td>
+                <td>Watermelon</td>
+                <td>Humidity</td>
+                <td>17</td>
+                <td>20</td>
+                <td>2020-06-26 21:11:28</td>
+                <td>23</td>
+                <td>Water machine</td>
+                <td>Turn off</td>
+            </tr>
+            <tr>
+                <td>Area 601</td>
+                <td>Watermelon</td>
+                <td>Temperature</td>
+                <td>22</td>
+                <td>38</td>
+                <td>2020-06-26 21:11:28</td>
+                <td>44</td>
+                <td>NA</td>
+                <td>NA</td>
+            </tr>
+            <tr>
+                <td>Area 601</td>
+                <td>Watermelon</td>
+                <td>Humidity</td>
+                <td>17</td>
+                <td>20</td>
+                <td>2020-06-26 21:11:58</td>
+                <td>24</td>
+                <td>Water machine</td>
+                <td>Turn off</td>
+            </tr>
+            <tr>
+                <td>Area 601</td>
+                <td>Watermelon</td>
+                <td>Humidity</td>
+                <td>17</td>
+                <td>20</td>
+                <td>2020-06-26 21:12:29</td>
+                <td>24</td>
+                <td>Water machine</td>
+                <td>Turn off</td>
+            </tr>
+          </table>
+       </div>
+    </div>
 {% endblock %}
